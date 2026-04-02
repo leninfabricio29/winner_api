@@ -138,7 +138,7 @@ export const verificationCode = ({ name, code, expiresIn = 15 }: VerificationCod
   const body = `
     <p class="greeting">Hola, <strong>${name}</strong> 👋</p>
 
-    <p>Para continuar con la creación de tu cuenta en <strong>SoftKilla</strong>, ingresa el siguiente código de verificación:</p>
+    <p>Para continuar con la creación de tu cuenta en <strong>Akisito</strong>, ingresa el siguiente código de verificación:</p>
 
     <div class="code-block">${code}</div>
 
@@ -155,7 +155,7 @@ export const verificationCode = ({ name, code, expiresIn = 15 }: VerificationCod
   `;
 
   return wrapTemplate({
-    headerColor: ['#1565c0', '#0d47a1'],
+    headerColor: ['#cb3a7c', '#8b1b4d'],
     headerEmoji: '🔐',
     headerTitle: 'VERIFICACIÓN DE CUENTA',
     body,
@@ -169,7 +169,7 @@ export const accountCreated = ({ name, email, loginUrl = '#' }: AccountCreatedDa
   const body = `
     <p class="greeting">¡Bienvenido/a, <strong>${name}</strong>! 🎉</p>
 
-    <p>Tu cuenta en <strong>SoftKilla</strong> ha sido creada exitosamente. Ya puedes comenzar a usar todos nuestros servicios.</p>
+    <p>Tu cuenta en <strong>Akisito</strong> ha sido creada exitosamente. Ya puedes comenzar a usar todos nuestros servicios.</p>
 
     <div class="info-box" style="background-color: #d4edda; border-color: #28a745;">
       <p style="color: #155724;">✅ Tu cuenta está activa y lista para usar.</p>
@@ -196,7 +196,7 @@ export const accountCreated = ({ name, email, loginUrl = '#' }: AccountCreatedDa
   `;
 
   return wrapTemplate({
-    headerColor: ['#2e7d32', '#1b5e20'],
+    headerColor: ['#cb3a7c', '#8b1b4d'],
     headerEmoji: '✅',
     headerTitle: 'CUENTA CREADA EXITOSAMENTE',
     body,
@@ -211,7 +211,7 @@ export const passwordChanged = ({ name, ip = 'No disponible', device = 'No dispo
   const body = `
     <p class="greeting">Hola, <strong>${name}</strong>,</p>
 
-    <p>Te informamos que la contraseña de tu cuenta en <strong>SoftKilla</strong> fue modificada recientemente.</p>
+    <p>Te informamos que la contraseña de tu cuenta en <strong>Akisito</strong> fue modificada recientemente.</p>
 
     <div class="details">
       <p>🕐 <strong>Fecha y hora:</strong> ${new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' })}</p>
@@ -239,7 +239,7 @@ export const passwordChanged = ({ name, ip = 'No disponible', device = 'No dispo
   `;
 
   return wrapTemplate({
-    headerColor: ['#e65100', '#bf360c'],
+    headerColor: ['#cb3a7c', '#8b1b4d'],
     headerEmoji: '🔑',
     headerTitle: 'CONTRASEÑA ACTUALIZADA',
     body,

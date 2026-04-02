@@ -161,28 +161,41 @@ export const validateBusinessRedemption = async (
   businessId: string,
   redemptionCode: string
 ): Promise<IRedemption> => {
+  // Primero buscar SOLO por código para verificar si existe
   const redemption = await Redemption.findOne({
-    redemption_code: redemptionCode,
-    business_id: businessId
+    redemption_code: redemptionCode
   }).populate('promotion_id');
+
+  console.log('[Validate] Code:', redemptionCode, 'Found:', redemption ? 'YES' : 'NO');
 
   if (!redemption) {
     throw new ApiError(404, 'Codigo de canje no encontrado');
   }
 
-  if (redemption.status !== 'pending') {
-    throw new ApiError(400, 'El codigo no esta pendiente de validacion');
+  // Verificar que el negocio sea el correcto
+  console.log('[Validate] Business check - Expected:', businessId, 'Got:', redemption.business_id.toString());
+  if (redemption.business_id.toString() !== businessId.toString()) {
+    throw new ApiError(403, 'No tienes permiso para validar este canje');
   }
 
+  // Verificar que esté pendiente
+  if (redemption.status !== 'pending') {
+    throw new ApiError(400, `El codigo no esta pendiente de validacion (estado: ${redemption.status})`);
+  }
+
+  // Verificar si expiró
   if (redemption.expires_at < new Date()) {
     redemption.status = 'expired';
     await redemption.save();
     throw new ApiError(400, 'El codigo de canje ya expiro');
   }
 
+  // Marcar como validado
   redemption.status = 'validated';
   redemption.validated_at = new Date();
   await redemption.save();
+
+  console.log('[Validate] Success! Redemption:', redemption._id);
 
   return redemption;
 };

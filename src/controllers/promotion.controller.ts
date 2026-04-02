@@ -91,13 +91,18 @@ export const createPromotion = asyncHandler(async (req: Request, res: Response) 
     const receivers = await User.find({ role: 'client', status: 'active' });
 
     for (const receiver of receivers) {
+      console.log (receiver.email);
       await notificationService.createNotification(
         String(receiver._id),
         `Nueva promocion disponible: ${promotion.title}`,
         `Acumula ${promotion.points_required} puntos visitando ${place.name} y canjealos por esta promocion`,
         'promotion'
       );
+
+     
     }
+
+    
 
   res.status(201).json({ success: true, data: promotion, message: 'Promocion creada' });
 });

@@ -61,9 +61,10 @@ export const validateRedemption = asyncHandler(async (req: Request, res: Respons
 export const listBusinessRedemptions = asyncHandler(async (req: Request, res: Response) => {
   const { page, limit, skip } = parsePagination(req.query);
 
+ 
+
   const filter = {
     business_id: req.user?.userId,
-    status: 'validated'
   };
 
   const [items, total] = await Promise.all([

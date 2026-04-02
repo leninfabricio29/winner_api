@@ -11,6 +11,8 @@ import favoriteRoutes from './favorite.routes';
 import pointsRoutes from './points.routes';
 import pointSourceRoutes from './pointSource.routes';
 import notificationRoutes from './notification.routes';
+import advertisementRoutes from './advertisement.routes';
+import fcmRoutes from './fcm.routes';
 
 const router = Router();
 
@@ -26,5 +28,7 @@ router.use('/favorites', favoriteRoutes);
 router.use('/points', pointsRoutes);
 router.use('/point-sources', pointSourceRoutes);
 router.use('/notifications', notificationRoutes);
+router.use('/advertisements', advertisementRoutes);
+router.use('/fcm-devices', fcmRoutes);
 
 export default router;

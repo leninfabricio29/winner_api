@@ -88,9 +88,9 @@ class EmailService {
   // ─── Asuntos por defecto ─────────────────────────────────────────────────
 
   private readonly defaultSubjects: Record<TemplateName, string> = {
-    verificationCode: '🔐 Tu código de verificación — SoftKilla',
-    accountCreated:   '✅ ¡Tu cuenta fue creada exitosamente! — SoftKilla',
-    passwordChanged:  '🔑 Tu contraseña ha sido actualizada — SoftKilla',
+    verificationCode: '🔐 Tu código de verificación — Akisito',
+    accountCreated:   '✅ ¡Tu cuenta fue creada exitosamente! — Akisito',
+    passwordChanged:  '🔑 Tu contraseña ha sido actualizada — Akisito',
   };
 
   // ─── Núcleo ──────────────────────────────────────────────────────────────

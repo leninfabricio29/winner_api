@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 let firebaseApp: admin.app.App | null = null;
+let isFirebaseInitialized = false;
 
 if (process.env.FIREBASE_CREDENTIALS_BASE64) {
   try {
@@ -22,12 +23,21 @@ if (process.env.FIREBASE_CREDENTIALS_BASE64) {
       credential: admin.credential.cert(serviceAccount),
     });
 
-    console.log('📌 Firebase inicializado correctamente');
+    isFirebaseInitialized = true;
+    console.log('✅ Firebase Admin SDK inicializado correctamente');
   } catch (error: any) {
-    console.warn('⚠️ Error al inicializar Firebase:', error.message);
+    isFirebaseInitialized = false;
+    console.error('❌ Error al inicializar Firebase:', error.message);
   }
 } else {
-  console.warn('⚠️ Firebase no está configurado. Las notificaciones push no funcionarán.');
+  isFirebaseInitialized = false;
+  console.error('❌ FIREBASE_CREDENTIALS_BASE64 no está configurado. Las notificaciones push NO funcionarán.');
+  console.error('   Configura esta variable de entorno en tu archivo .env');
+}
+
+// Exportar función para validar que Firebase esté listo
+export function isFirebaseReady(): boolean {
+  return isFirebaseInitialized && firebaseApp !== null;
 }
 
 export default admin;

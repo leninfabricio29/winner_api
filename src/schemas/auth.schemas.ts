@@ -35,7 +35,7 @@ export const loginSchema = z.object({
 export const forgotPasswordSchema = z.object({
   body: z
     .object({
-      ci: z.string().regex(/^\d{13}$/, 'La cedula debe tener 13 digitos').optional(),
+      ci: z.string().regex(/^\d{10}$/, 'La cedula debe tener 10 digitos').optional(),
       ruc: z.string().regex(/^\d{13}$/, 'El RUC debe tener 13 digitos').optional()
     })
     .refine((value) => Boolean(value.ci || value.ruc), {

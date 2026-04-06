@@ -7,7 +7,7 @@ import { updatePointSourceSchema } from '../schemas/pointSource.schemas';
 
 const router = Router();
 
-router.get('/', authenticate, listPointSources);
+router.get('/', listPointSources);
 router.put('/:id', authenticate, authorize('super_admin'), validate(updatePointSourceSchema), updatePointSource);
 
 export default router;
